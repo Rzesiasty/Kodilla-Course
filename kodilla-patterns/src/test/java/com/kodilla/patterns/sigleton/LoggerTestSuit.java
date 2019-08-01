@@ -5,18 +5,13 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class LoggerTestSuit {
-
-    Logger logger = new Logger();
-
     @Test
     public void testGetLastLog() {
         //Given
-        logger.log("First daily log");
+        Logger.getInstance().log("First daily log");
         //When
-        String log = logger.getLastLog();
-
+        String log = Logger.getInstance().getLastLog();
         //Then
         Assert.assertEquals("First daily log", log);
-
     }
 }
