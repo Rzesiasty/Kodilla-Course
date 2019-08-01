@@ -10,4 +10,5 @@ include 'kodilla-testing'
 include 'kodilla-spring-intro'
 include 'kodilla-stream'
 include 'kodilla-spring'
+include 'kodilla-patterns'
 
