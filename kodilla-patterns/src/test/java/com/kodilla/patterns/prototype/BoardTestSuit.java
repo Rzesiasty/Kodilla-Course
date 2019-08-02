@@ -29,11 +29,20 @@ public class BoardTestSuit {
         board.getLists().add(listInProgress);
         board.getLists().add(listDone);
 
+        Board cloneBoard  = null;
+        try {
+            cloneBoard = board.shallowCopy();
+            cloneBoard.setName("Project number 2");
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
         System.out.println(board);
+        System.out.println(cloneBoard);
 
         //When
         //Then
         Assert.assertEquals(3, board.getLists().size());
+        Assert.assertEquals(3, cloneBoard.getLists().size());
     }
 
 }
