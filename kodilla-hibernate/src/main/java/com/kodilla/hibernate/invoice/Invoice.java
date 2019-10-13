@@ -1,8 +1,7 @@
 package com.kodilla.hibernate.invoice;
 
-import org.springframework.lang.NonNull;
-
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,8 +21,8 @@ public class Invoice {
 
     @Id
     @GeneratedValue
-    @NonNull
-    @Column(name = "ID")
+    @NotNull
+    @Column(name = "ID", unique = true)
     public int getId() {
         return id;
     }
@@ -33,6 +32,7 @@ public class Invoice {
     }
 
     @Column(name = "NAME")
+    @NotNull
     public String getNumber() {
         return number;
     }
@@ -45,8 +45,7 @@ public class Invoice {
             targetEntity = Item.class,
             mappedBy = "invoice",
             cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY
-    )
+            fetch = FetchType.LAZY)
     public List<Item> getItems() {
         return items;
     }

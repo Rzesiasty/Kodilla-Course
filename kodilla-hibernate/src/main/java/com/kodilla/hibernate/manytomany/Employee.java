@@ -1,67 +1,69 @@
 package com.kodilla.hibernate.manytomany;
 
-import org.springframework.lang.NonNull;
-
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-@NamedQuery(
-        name = "Employee.searchForEmployee",
-        query = "FROM Employee WHERE lastname = :LASTNAME"
-)
+@NamedQueries({
+        @NamedQuery(
+                name = "Employee.findByLastname",
+                query = "FROM Employee WHERE lastname = :LASTNAME"
+        ),
+})
 @Entity
 @Table(name = "EMPLOYEES")
 public class Employee {
     private int id;
-    private String firstName;
-    private String lastName;
+    private String firstname;
+    private String lastname;
     private List<Company> companies = new ArrayList<>();
-
-    public Employee(String firstName, String lastName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
 
     public Employee() {
     }
 
+    public Employee(String firstname, String lastname) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+    }
+
     @Id
-    @NonNull
     @GeneratedValue
-    @Column(name = "ID")
+    @NotNull
+    @Column(name = "EMPLOYEE_ID", unique = true)
     public int getId() {
         return id;
+    }
+
+    @NotNull
+    @Column(name = "FIRSTNAME")
+    public String getFirstname() {
+        return firstname;
+    }
+
+    @NotNull
+    @Column(name = "LASTNAME")
+    public String getLastname() {
+        return lastname;
     }
 
     private void setId(int id) {
         this.id = id;
     }
 
-    @NonNull
-    @Column(name = "FIRSTNAME")
-    public String getFirstName() {
-        return firstName;
+    private void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
 
-    private void setFirstName(String firstName) {
-        this.firstName = firstName;
+    private void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
-    @NonNull
-    @Column(name = "LASTNAME")
-    public String getLastName() {
-        return lastName;
-    }
-
-    private void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "JOIN_COMPANY_EMPLOYEE",
-            joinColumns = {@JoinColumn(name = "EMPLOYEE_ID", referencedColumnName = "ID")},
+            joinColumns = {@JoinColumn(name = "EMPLOYEE_ID", referencedColumnName = "EMPLOYEE_ID")},
             inverseJoinColumns = {@JoinColumn(name = "COMPANY_ID", referencedColumnName = "COMPANY_ID")}
     )
     public List<Company> getCompanies() {

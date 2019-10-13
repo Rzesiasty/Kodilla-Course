@@ -4,6 +4,7 @@ import com.kodilla.hibernate.tasklist.TaskList;
 import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 @NamedQueries({
         @NamedQuery(
@@ -42,7 +43,7 @@ public final class Task {
 
     @Id
     @GeneratedValue
-    @NonNull
+    @NotNull
     @Column(name = "ID", unique = true)
     public int getId() {
         return id;
@@ -53,7 +54,7 @@ public final class Task {
         return description;
     }
 
-    @NonNull
+    @NotNull
     @Column(name = "CREATED")
     public Date getCreated() {
         return created;

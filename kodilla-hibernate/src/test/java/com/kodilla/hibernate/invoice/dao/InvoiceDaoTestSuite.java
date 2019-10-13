@@ -1,11 +1,8 @@
-package com.kodilla.invoice.dao;
+package com.kodilla.hibernate.invoice.dao;
 
 import com.kodilla.hibernate.invoice.Invoice;
 import com.kodilla.hibernate.invoice.Item;
 import com.kodilla.hibernate.invoice.Product;
-import com.kodilla.hibernate.invoice.dao.InvoiceDao;
-import com.kodilla.hibernate.invoice.dao.ItemsDao;
-import com.kodilla.hibernate.invoice.dao.ProductDao;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -61,7 +58,12 @@ public class InvoiceDaoTestSuite {
         Assert.assertEquals("Laptop DELL", productName);
 
         //CleanUp
-        invoiceDao.deleteById(id);
-
+        try {
+            productDao.deleteAll();
+            itemsDao.deleteAll();
+            invoiceDao.deleteAll();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

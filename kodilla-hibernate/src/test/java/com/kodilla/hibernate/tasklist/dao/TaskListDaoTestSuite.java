@@ -1,10 +1,9 @@
-package com.kodilla.tasklist.dao;
+package com.kodilla.hibernate.tasklist.dao;
 
 
 import com.kodilla.hibernate.task.Task;
 import com.kodilla.hibernate.task.TaskFinancialDetails;
 import com.kodilla.hibernate.tasklist.TaskList;
-import com.kodilla.hibernate.tasklist.dao.TaskListDao;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,19 +24,21 @@ public class TaskListDaoTestSuite {
     @Test
     public void testFindByListName(){
         //Given
-        TaskList taskList = new TaskList("LISTNAME", "DESCRIPTION");
-        taskListDao.save(taskList);
-        String list = taskList.getListName();
-
-        //When
-        List<TaskList> readTaskList = taskListDao.findByListName(list);
+        TaskList taskList1 = new TaskList("tasklist1", "description of first task");
+        TaskList taskList2 = new TaskList("tasklist2", "description of second task");
+        //when
+        taskListDao.save(taskList1);
+        taskListDao.save(taskList2);
 
         //Then
+        String listName2 = taskList2.getListName();
+        List<TaskList> readTaskList = taskListDao.findByListName(listName2);
         Assert.assertEquals(1, readTaskList.size());
+        Assert.assertEquals(listName2, readTaskList.get(0).getListName());
 
         //CleanUp
-        int id = readTaskList.get(0).getId();
-        taskListDao.deleteById(id);
+        taskListDao.delete(taskList1);
+        taskListDao.delete(taskList2);
     }
 
     @Test
@@ -61,6 +62,6 @@ public class TaskListDaoTestSuite {
         Assert.assertNotEquals(0, id);
 
         //CleanUp
-        taskListDao.deleteById(id);
+        taskListDao.delete(taskList);
     }
 }

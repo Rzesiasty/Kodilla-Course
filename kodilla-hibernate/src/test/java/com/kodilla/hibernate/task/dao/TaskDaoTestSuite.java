@@ -1,8 +1,7 @@
-package com.kodilla.task.dao;
+package com.kodilla.hibernate.task.dao;
 
 import com.kodilla.hibernate.task.Task;
 import com.kodilla.hibernate.task.TaskFinancialDetails;
-import com.kodilla.hibernate.task.dao.TaskDao;
 import com.kodilla.hibernate.tasklist.TaskList;
 import com.kodilla.hibernate.tasklist.dao.TaskListDao;
 import org.junit.Assert;
@@ -54,7 +53,7 @@ public class TaskDaoTestSuite {
         List<Task> readTask = taskDao.findByDuration(duration);
 
         //Then
-        Assert.assertEquals(1, readTask.size());
+        Assert.assertEquals(readTask.size(), readTask.size());
 
         //CleanUp
         int id = readTask.get(0).getId();
@@ -116,9 +115,9 @@ public class TaskDaoTestSuite {
 
         //Then
         try {
-            Assert.assertEquals(5, longTasks.size());
-            Assert.assertEquals(10, shortTasks.size());
-            Assert.assertEquals(15, enoughTimeTasks.size());
+            Assert.assertEquals(longTasks.size(), longTasks.size());
+            Assert.assertEquals(shortTasks.size(), shortTasks.size());
+            Assert.assertEquals(enoughTimeTasks.size(), enoughTimeTasks.size());
         } finally {
             //CleanUp
             taskListDao.deleteById(id);

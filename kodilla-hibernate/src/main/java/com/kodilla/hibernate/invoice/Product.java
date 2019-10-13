@@ -1,8 +1,7 @@
 package com.kodilla.hibernate.invoice;
 
-import org.springframework.lang.NonNull;
-
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,13 +21,13 @@ public class Product {
 
     @Id
     @GeneratedValue
-    @NonNull
+    @NotNull
     @Column(name = "ID")
     public int getId() {
         return id;
     }
 
-    @NonNull
+    @NotNull
     @Column(name = "NAME")
     public String getName() {
         return name;

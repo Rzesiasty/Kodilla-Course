@@ -1,8 +1,7 @@
 package com.kodilla.hibernate.task;
 
-import org.springframework.lang.NonNull;
-
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 @Entity
@@ -22,7 +21,7 @@ public class TaskFinancialDetails {
 
     @Id
     @GeneratedValue
-    @NonNull
+    @NotNull
     @Column(name = "ID",unique = true)
     public int getId() {
         return id;

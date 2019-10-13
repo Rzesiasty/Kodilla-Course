@@ -1,4 +1,4 @@
-package com.kodilla.spring.web;
+package com.kodilla.kodilla.spring.web;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

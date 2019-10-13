@@ -1,6 +1,5 @@
 package com.kodilla.jdbc;
 
-import com.sun.xml.internal.bind.v2.model.core.ID;
 import org.junit.Assert;
 import org.junit.Test;
 
