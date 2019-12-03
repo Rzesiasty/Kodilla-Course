@@ -32,33 +32,40 @@ public class FacadeTestSuite {
     public void testCompanySearchNameFacade() throws SearchProcessingException {
         //Given
         Company company = new Company("Company test");
+        Company company1 = new Company("Company1 test");
 
         //When
         companyDao.save(company);
+        companyDao.save(company1);
         List<Company> companies = facade.searchCompanyByName("%comp%");
 
         //Then
-        Assert.assertEquals(1, companies.size());
+        Assert.assertEquals(2, companies.size());
 
         //CleanUp
         companyDao.deleteById(company.getId());
+        companyDao.deleteById(company1.getId());
     }
 
     @Test
     public void testEmployeeSearchNameFacade() throws SearchProcessingException {
         //Given
         Employee employee = new Employee("name", "lastname");
+        Employee employee1 = new Employee("name1", "lastname1");
+        Employee employee2 = new Employee("name2", "Kowalski");
 
         //When
         employeeDao.save(employee);
+        employeeDao.save(employee1);
+        employeeDao.save(employee2);
         List<Employee> employees = facade.searchEmployByName("%last%");
 
         //Then
-        Assert.assertEquals(1, employees.size());
+        Assert.assertEquals(2, employees.size());
 
         //CleanUp
         employeeDao.deleteById(employee.getId());
-
+        employeeDao.deleteById(employee1.getId());
+        employeeDao.deleteById(employee2.getId());
     }
-
 }
