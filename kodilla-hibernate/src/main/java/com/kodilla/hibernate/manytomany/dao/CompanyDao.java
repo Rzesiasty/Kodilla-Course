@@ -14,4 +14,8 @@ import java.util.List;
 public interface CompanyDao extends CrudRepository<Company, Integer> {
     @Query(nativeQuery = true)
     List<Company> findByThreeCharsPrefix(@Param("PREFIX") String prefix);
+
+    @Query
+    List<Company> searchCompanyByName(@Param("SEARCHKEY") String SEARCHKEY);
+
 }

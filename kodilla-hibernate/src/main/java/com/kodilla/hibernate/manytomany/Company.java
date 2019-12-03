@@ -5,6 +5,11 @@ import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
+@NamedQuery(
+        name = "Company.searchCompanyByName",
+        query = "FROM Company WHERE name LIKE CONCAT (:SEARCHKEY, '%')"
+)
+
 @NamedNativeQuery(
         name = "Company.findByThreeCharsPrefix",
         query = "SELECT * FROM COMPANIES" +
@@ -54,5 +59,13 @@ public class Company {
 
     public void setEmployees(List<Employee> employees) {
         this.employees = employees;
+    }
+
+    @Override
+    public String toString() {
+        return "Company{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

@@ -10,6 +10,10 @@ import java.util.List;
                 name = "Employee.findByLastname",
                 query = "FROM Employee WHERE lastname = :LASTNAME"
         ),
+        @NamedQuery(
+                name = "Employee.searchEmployeeByName",
+                query = "FROM Employee WHERE lastname LIKE CONCAT (:SEARCHKEY, '%')"
+        ),
 })
 @Entity
 @Table(name = "EMPLOYEES")
@@ -27,10 +31,15 @@ public class Employee {
         this.lastname = lastname;
     }
 
+    public Employee(int id, String firstname, String lastname) {
+        this.id = id;
+        this.firstname = firstname;
+        this.lastname = lastname;
+    }
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @NotNull
-    @Column(name = "EMPLOYEE_ID", unique = true)
+    @Column(name = "EMPLOYEE_ID")
     public int getId() {
         return id;
     }
@@ -58,6 +67,7 @@ public class Employee {
     private void setLastname(String lastname) {
         this.lastname = lastname;
     }
+
 
 
     @ManyToMany(cascade = CascadeType.ALL)
