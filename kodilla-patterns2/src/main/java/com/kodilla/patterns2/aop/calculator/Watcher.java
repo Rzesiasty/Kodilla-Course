@@ -21,6 +21,7 @@ public class Watcher {
         LOGGER.info("Class: " + object.getClass().getName() + " args: " + theNumber);
     }
 
+
     @Around("execution(* com.kodilla.patterns2.aop.calculator.Calculator.factorial(..))")
     public Object measureTime(final ProceedingJoinPoint proceedingJoinPoint) throws Throwable{
         Object result;
